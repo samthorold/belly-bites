@@ -1,0 +1,1 @@
+ALTER TABLE "belly-bites_ingredients" ADD COLUMN "meal_id" integer NOT NULL;
