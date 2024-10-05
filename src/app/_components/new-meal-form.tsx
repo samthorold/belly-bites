@@ -1,9 +1,9 @@
 function getCurrentDate() {
   const now = new Date();
-  // const offset = now.getTimezoneOffset();
-  // now.setMinutes(now.getMinutes() - offset);
+  const offset = now.getTimezoneOffset();
+  now.setMinutes(now.getMinutes() - offset);
   console.log(now.toISOString());
-  return now.toISOString().slice(0, 16);
+  return now.toISOString().slice(0, 10);
 }
 
 export default function NewMealForm({
@@ -15,20 +15,38 @@ export default function NewMealForm({
     <div className="form-container">
       <form action={updateItemAction} className="form">
         <label className="form-label">
-          Name:
+          Description:
           <input type="text" name="mealName" className="form-input" />
         </label>
         <label className="form-label">
-          Meal Time:
+          Meal:
+          <select
+            name="mealType"
+            className="form-input"
+            defaultValue=""
+            required
+          >
+            <option value="" disabled>
+              Select type
+            </option>
+            <option value="Breakfast">Breakfast</option>
+            <option value="Lunch">Lunch</option>
+            <option value="Dinner">Dinner</option>
+            <option value="Snack">Snack</option>
+          </select>
+        </label>
+        <label className="form-label">
+          When:
           <input
-            type="datetime-local"
+            type="date"
             name="mealTime"
             defaultValue={getCurrentDate()}
             className="form-input"
+            required
           />
         </label>
         <button type="submit" className="form-button">
-          Submit
+          Add ingredients
         </button>
       </form>
     </div>
