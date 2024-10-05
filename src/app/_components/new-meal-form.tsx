@@ -1,5 +1,3 @@
-// import "./new-meal-form.css";
-
 function getCurrentDate() {
   const now = new Date();
   // const offset = now.getTimezoneOffset();
@@ -23,7 +21,7 @@ export default function NewMealForm({
         <label className="form-label">
           Meal Time:
           <input
-            type="datetime"
+            type="datetime-local"
             name="mealTime"
             defaultValue={getCurrentDate()}
             className="form-input"
