@@ -1,0 +1,1 @@
+ALTER TABLE "belly-bites_meals" ADD COLUMN "meal_type" varchar(256);

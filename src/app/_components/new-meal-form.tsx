@@ -46,7 +46,7 @@ export default function NewMealForm({
           />
         </label>
         <button type="submit" className="form-button">
-          Add ingredients
+          Create and add ingredients
         </button>
       </form>
     </div>

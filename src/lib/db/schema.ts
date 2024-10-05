@@ -13,6 +13,7 @@ export const meals = createTable("meals", {
   id: serial("id").primaryKey(),
   userId: varchar("user_id", { length: 256 }).notNull(),
   mealName: varchar("meal_name", { length: 256 }).notNull(),
+  mealType: varchar("meal_type", { length: 256 }),
   mealTime: timestamp("meal_time", { withTimezone: true }).notNull(),
   createdAt: timestamp("created_at", { withTimezone: true })
     .default(sql`CURRENT_TIMESTAMP`)
