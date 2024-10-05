@@ -22,6 +22,7 @@ export const meals = createTable("meals", {
 
 export const ingredients = createTable("ingredients", {
   id: serial("id").primaryKey(),
+  mealId: integer("meal_id").notNull(),
   categoryId: integer("category_id").notNull(),
   name: varchar("name", { length: 256 }).notNull(),
   createdAt: timestamp("created_at", { withTimezone: true })
@@ -51,5 +52,9 @@ export const ingredientRelations = relations(ingredients, ({ one }) => ({
   category: one(categories, {
     fields: [ingredients.categoryId],
     references: [categories.id],
+  }),
+  meal: one(meals, {
+    fields: [ingredients.mealId],
+    references: [meals.id],
   }),
 }));
