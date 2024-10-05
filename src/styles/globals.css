@@ -41,3 +41,38 @@
     cursor: pointer;
     width: 100%;
   }
+
+  .meal-detail-container {
+    display: grid;
+    grid-template-columns: 1fr;  /* Single column for smaller screens */
+    grid-gap: 16px;
+    padding: 20px;
+}
+
+.meal-header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.ingredient-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.ingredient-item {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #ddd;
+  padding: 8px 0;
+}
+
+.form-section {
+  margin-top: 20px;
+}
+
+@media (min-width: 600px) {
+  .meal-detail-container {
+      grid-template-columns: 3fr 1fr;  /* Two columns on larger screens */
+  }
+}

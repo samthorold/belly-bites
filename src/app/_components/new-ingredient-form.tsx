@@ -7,7 +7,7 @@ export default async function NewIngredientForm({
 }) {
   return (
     <div className="form-container">
-      <form action={updateItemAction}>
+      <form action={updateItemAction} className="form">
         <label className="form-label">
           Category:
           <select
