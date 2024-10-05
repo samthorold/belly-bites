@@ -11,6 +11,8 @@ export const createTable = pgTableCreator((name) => `belly-bites_${name}`);
 
 export const meals = createTable("meals", {
   id: serial("id").primaryKey(),
+  userId: varchar("user_id", { length: 256 }).notNull(),
+  mealName: varchar("meal_name", { length: 256 }).notNull(),
   mealTime: timestamp("meal_time", { withTimezone: true }).notNull(),
   createdAt: timestamp("created_at", { withTimezone: true })
     .default(sql`CURRENT_TIMESTAMP`)

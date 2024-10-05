@@ -1,5 +1,3 @@
-"use client";
-
 import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import Link from "next/link";
 
@@ -14,6 +12,7 @@ export default function TopNav() {
           <SignInButton />
         </SignedOut>
         <SignedIn>
+          <Link href="/new-meal">New Meal</Link>
           <UserButton />
         </SignedIn>
       </div>
