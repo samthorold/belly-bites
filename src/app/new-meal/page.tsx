@@ -1,6 +1,6 @@
 import NewMealForm from "../_components/new-meal-form";
-import { createMeal } from "~/lib/repository";
+import { createMealAction } from "~/lib/actions";
 
 export default function NewMealPage() {
-  return <NewMealForm updateItemAction={createMeal} />;
+  return <NewMealForm updateItemAction={createMealAction} />;
 }

@@ -26,12 +26,7 @@ export default async function NewIngredientForm({
         </label>
         <label className="form-label">
           Name:
-          <input
-            type="text"
-            name="ingredientName"
-            className="form-input"
-            required
-          />
+          <input type="text" name="name" className="form-input" required />
         </label>
         <button type="submit" className="form-button">
           Add

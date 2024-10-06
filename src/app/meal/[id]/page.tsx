@@ -1,9 +1,14 @@
-import { createIngredient, getMeal } from "~/lib/repository";
+import { createIngredientAction } from "~/lib/actions";
+import { getMeal } from "~/lib/repository";
 
 import NewIngredientForm from "~/app/_components/new-ingredient-form";
 
 export default async function MealPage({ params }: { params: { id: number } }) {
-  const createIngredientWithMealId = createIngredient.bind(null, params.id);
+  const mealId = Number(params.id);
+  const createIngredientActionWithMealId = createIngredientAction.bind(
+    null,
+    mealId,
+  );
   const meal = await getMeal(params.id);
   console.log(meal);
   return (
@@ -24,7 +29,9 @@ export default async function MealPage({ params }: { params: { id: number } }) {
         </ul>
       </div>
       <div className="form-section">
-        <NewIngredientForm updateItemAction={createIngredientWithMealId} />
+        <NewIngredientForm
+          updateItemAction={createIngredientActionWithMealId}
+        />
       </div>
     </div>
   );
