@@ -1,6 +1,6 @@
-import { getCategories } from "~/lib/repository";
+import { listCategories } from "~/lib/repository";
 
-export default async function NewIngredientForm({
+export default async function CreateIngredientForm({
   updateItemAction,
 }: {
   updateItemAction: (formData: FormData) => void;
@@ -17,7 +17,7 @@ export default async function NewIngredientForm({
             required
           >
             <option value="">Select a category</option>
-            {(await getCategories()).map((category) => (
+            {(await listCategories()).map((category) => (
               <option key={category.id} value={category.id}>
                 {category.name}
               </option>

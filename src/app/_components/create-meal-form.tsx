@@ -6,7 +6,7 @@ function getCurrentDate() {
   return now.toISOString().slice(0, 10);
 }
 
-export default function NewMealForm({
+export default function CreateMealForm({
   updateItemAction,
 }: {
   updateItemAction: (formData: FormData) => void;

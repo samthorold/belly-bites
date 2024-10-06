@@ -71,7 +71,7 @@ export async function getMeal(mealId: number) {
   return { ...meal, ingredientsWithCategories };
 }
 
-export async function getCategories() {
+export async function listCategories() {
   const categories = await db.query.categories.findMany();
   if (!categories) throw new Error("No categories found.");
   return categories;
