@@ -18,7 +18,7 @@ export async function createMealAction(formData: FormData) {
   if (!formData) throw new Error("No body");
   console.log(formData);
   const unvalidatedData = {
-    ...Object.fromEntries(formData.entries()),
+    ...Object.fromEntries(formData),
     userId: user.userId,
   };
   console.log(unvalidatedData);
@@ -38,7 +38,7 @@ export async function createIngredientAction(
   if (!formData) throw new Error("No body");
   console.log(formData);
   const unvalidatedData = {
-    ...Object.fromEntries(formData.entries()),
+    ...Object.fromEntries(formData),
     mealId,
   };
   console.log(unvalidatedData);
