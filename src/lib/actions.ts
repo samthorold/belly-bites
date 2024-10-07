@@ -8,6 +8,7 @@ import {
   createMeal,
   newIngredientSchema,
   createIngredient,
+  deleteIngredient,
 } from "./repository";
 
 // TODO: should auth be here? or userId bound to the action in the component?
@@ -46,4 +47,11 @@ export async function createIngredientAction(
   console.log(validatedData);
   await createIngredient(validatedData);
   redirect(`/meal/${mealId}`);
+}
+
+export async function deleteIngredientAction(ingredientId: number) {
+  const user = auth();
+  if (!user.userId) throw new Error("Unauthorized");
+  const deleted = await deleteIngredient(ingredientId);
+  redirect(`/meal/${deleted.mealId}`);
 }

@@ -2,6 +2,7 @@ import { z } from "zod";
 
 import { db } from "./db";
 import { ingredients, meals } from "./db/schema";
+import { eq } from "drizzle-orm";
 
 export const newMealSchema = z.object({
   userId: z.string().min(1, "User ID cannot be empty"),
@@ -47,6 +48,15 @@ export async function createIngredient(data: NewIngredient) {
   const newRecords = await db.insert(ingredients).values(data).returning();
   if (!newRecords[0]) throw new Error("Error creating new ingredient.");
   return newRecords[0];
+}
+
+export async function deleteIngredient(id: number) {
+  const deleted = await db
+    .delete(ingredients)
+    .where(eq(ingredients.id, id))
+    .returning();
+  if (!deleted[0]) throw new Error("Error deleting ingredient.");
+  return deleted[0];
 }
 
 export async function getMeal(mealId: number) {

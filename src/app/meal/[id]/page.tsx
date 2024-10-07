@@ -2,6 +2,7 @@ import { createIngredientAction } from "~/lib/actions";
 import { getMeal } from "~/lib/repository";
 
 import CreateIngredientForm from "~/app/_components/create-ingredient-form";
+import IngredientsList from "~/app/_components/ingredients-list";
 
 export default async function MealPage({ params }: { params: { id: number } }) {
   const mealId = Number(params.id);
@@ -21,11 +22,7 @@ export default async function MealPage({ params }: { params: { id: number } }) {
       <div className="ingredient-section">
         <div>Ingredients:</div>
         <ul className="ingredient-list">
-          {meal.ingredientsWithCategories.map((ic) => (
-            <li key={ic.id} className="ingredient-item">
-              <span>{ic.categoryName}:</span> <span>{ic.name}</span>
-            </li>
-          ))}
+          <IngredientsList ingredients={meal.ingredientsWithCategories} />
         </ul>
       </div>
       <div className="form-section">
