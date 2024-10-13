@@ -7,8 +7,9 @@ Domain functionality:
 - [ ] Ability to edit meals
 - [ ] Ability to edit ingredients
 - [ ] Ability to delete meals
-- [ ] Ability to delete ingredients
+- [x] Ability to delete ingredients
 
 User experience:
 
+- [ ] List meals
 - [ ] Feedback that something is happening
