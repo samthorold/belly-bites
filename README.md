@@ -12,4 +12,4 @@ Domain functionality:
 User experience:
 
 - [ ] List meals
-- [ ] Feedback that something is happening
+- [ ] [Suspense tags and loading state](https://nextjs.org/docs/app/building-your-application/routing/loading-ui-and-streaming#instant-loading-states)
