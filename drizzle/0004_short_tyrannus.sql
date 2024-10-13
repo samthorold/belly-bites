@@ -1,0 +1,1 @@
+ALTER TABLE "belly-bites_meals" ALTER COLUMN "meal_type" SET NOT NULL;

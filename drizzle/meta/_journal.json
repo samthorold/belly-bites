@@ -29,6 +29,13 @@
       "when": 1728151192096,
       "tag": "0003_perfect_whirlwind",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1728811128360,
+      "tag": "0004_short_tyrannus",
+      "breakpoints": true
     }
   ]
 }
