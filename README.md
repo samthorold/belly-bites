@@ -8,6 +8,8 @@ Domain functionality:
 - [ ] Ability to edit ingredients
 - [ ] Ability to delete meals
 - [x] Ability to delete ingredients
+- [ ] Retrieve category counts for a day, month, year
+- [ ] [Plot category counts](https://github.com/tremorlabs/tremor/tree/main)
 
 User experience:
 
