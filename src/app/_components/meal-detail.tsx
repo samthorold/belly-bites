@@ -1,14 +1,17 @@
+import { Suspense } from "react";
 import CreateIngredientForm from "~/app/_components/create-ingredient-form";
 import IngredientsList from "~/app/_components/ingredients-list";
-import type { MealWithIngredientsAndCategories } from "~/lib/repository";
+import LoadingSkeleton from "./loading";
+import { getMeal } from "~/lib/repository";
 
-export default function MealDetail({
-  meal,
+export default async function MealDetail({
+  meal_id,
   updateItemAction,
 }: {
-  meal: MealWithIngredientsAndCategories;
+  meal_id: number;
   updateItemAction: (formData: FormData) => void;
 }) {
+  const meal = await getMeal(meal_id);
   return (
     <div className="meal-detail-container">
       <div className="meal-header">
@@ -19,7 +22,9 @@ export default function MealDetail({
       <div className="ingredient-section">
         <div>Ingredients:</div>
         <ul className="ingredient-list">
-          <IngredientsList ingredients={meal.ingredientsWithCategories} />
+          <Suspense fallback={<LoadingSkeleton />}>
+            <IngredientsList meal_id={meal_id} />
+          </Suspense>
         </ul>
       </div>
       <div className="form-section">

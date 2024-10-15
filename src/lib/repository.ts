@@ -20,21 +20,12 @@ export const newMealSchema = z.object({
   mealName: z.string(),
 });
 
-export const mealWithIngredientsAndCategoriesSchema = z.object({
+export const ingredientWithCategorySchema = z.object({
   id: z.number(),
-  userId: z.string().min(1, "User ID cannot be empty"),
-  mealName: z.string().min(1, "Meal name cannot be empty"),
-  mealType: z.string().min(1, "Meal type cannot be empty"),
-  mealTime: z
-    .string()
-    .min(1, "Meal time cannot be empty")
-    .transform((val) => {
-      const parsed = new Date(val);
-      if (!parsed) {
-        throw new Error(`Invalid date {val}`);
-      }
-      return parsed;
-    }),
+  mealId: z.number(),
+  categoryId: z.number(),
+  categoryName: z.string().min(1, "Category name cannot be empty"),
+  name: z.string().min(1, "Name cannot be empty"),
   createdAt: z
     .string()
     .min(1, "Created at cannot be empty")
@@ -55,35 +46,6 @@ export const mealWithIngredientsAndCategoriesSchema = z.object({
       }
       return parsed;
     }),
-  ingredientsWithCategories: z.array(
-    z.object({
-      id: z.number(),
-      mealId: z.number(),
-      categoryId: z.number(),
-      categoryName: z.string().min(1, "Category name cannot be empty"),
-      name: z.string().min(1, "Name cannot be empty"),
-      createdAt: z
-        .string()
-        .min(1, "Created at cannot be empty")
-        .transform((val) => {
-          const parsed = new Date(val);
-          if (!parsed) {
-            throw new Error(`Invalid date {val}`);
-          }
-          return parsed;
-        }),
-      updatedAt: z
-        .string()
-        // .min(1, "Updated at cannot be empty")
-        .transform((val) => {
-          const parsed = new Date(val);
-          if (!parsed) {
-            return null;
-          }
-          return parsed;
-        }),
-    }),
-  ),
 });
 
 export const newIngredientSchema = z.object({
@@ -103,8 +65,8 @@ export const newIngredientSchema = z.object({
 
 type NewMeal = z.infer<typeof newMealSchema>;
 type NewIngredient = z.infer<typeof newIngredientSchema>;
-export type MealWithIngredientsAndCategories = z.infer<
-  typeof mealWithIngredientsAndCategoriesSchema
+export type IngredientWithCategory = z.infer<
+  typeof ingredientWithCategorySchema
 >;
 
 export async function createMeal(data: NewMeal) {
@@ -133,6 +95,10 @@ export async function getMeal(mealId: number) {
     where: (model, { eq }) => eq(model.id, mealId),
   });
   if (!meal) throw new Error(`Meal [${mealId}] not found.`);
+  return meal;
+}
+
+export async function getIngredientsWithCategories(mealId: number) {
   const ingredients = await db.query.ingredients.findMany({
     where: (model, { eq }) => eq(model.mealId, mealId),
   });
@@ -147,7 +113,7 @@ export async function getMeal(mealId: number) {
       categoryName: maybeCategory ? maybeCategory.name : "",
     });
   }
-  return { ...meal, ingredientsWithCategories };
+  return ingredientsWithCategories;
 }
 
 export async function listCategories() {

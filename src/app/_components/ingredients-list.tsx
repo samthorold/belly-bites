@@ -1,27 +1,22 @@
-"use client";
+// Can this be split into two components?
+// One for the list and one for the item?
+// The list component would be a server side component and fetch the data
+// The item component would be a client side component and render the data
+// with the delete button
 
-import { deleteIngredientAction } from "~/lib/actions";
+import { getIngredientsWithCategories } from "~/lib/repository";
+import IngredientsListItem from "./ingredients-list-item";
 
-export default function IngredientsList({
-  ingredients,
+export default async function IngredientsList({
+  meal_id,
 }: {
-  ingredients: {
-    categoryName: string;
-    mealId: number;
-    categoryId: number;
-    name: string;
-    id: number;
-    createdAt: Date;
-    updatedAt: Date | null;
-  }[];
+  meal_id: number;
 }) {
+  const ingredientsWithCategories = await getIngredientsWithCategories(meal_id);
   return (
     <ul className="ingredient-list">
-      {ingredients.map((ic) => (
-        <li key={ic.id} className="ingredient-item">
-          <span>{ic.categoryName}:</span> <span>{ic.name}</span>{" "}
-          <button onClick={() => deleteIngredientAction(ic.id)}>Delete</button>
-        </li>
+      {ingredientsWithCategories.map((ic) => (
+        <IngredientsListItem key={ic.id} ingredient={ic} />
       ))}
     </ul>
   );
