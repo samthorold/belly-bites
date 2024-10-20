@@ -9,6 +9,12 @@ export async function createMeal(data: NewMeal) {
   return newRecords[0];
 }
 
+export async function deleteMeal(id: number) {
+  const deleted = await db.delete(meals).where(eq(meals.id, id)).returning();
+  if (!deleted[0]) throw new Error("Error deleting meal.");
+  return deleted[0];
+}
+
 export async function createIngredient(data: NewIngredient) {
   const newRecords = await db.insert(ingredients).values(data).returning();
   if (!newRecords[0]) throw new Error("Error creating new ingredient.");
