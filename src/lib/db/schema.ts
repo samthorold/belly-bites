@@ -18,9 +18,6 @@ export const meals = createTable("meals", {
   createdAt: timestamp("created_at", { withTimezone: true })
     .default(sql`CURRENT_TIMESTAMP`)
     .notNull(),
-  updatedAt: timestamp("updated_at", { withTimezone: true }).$onUpdate(
-    () => new Date(),
-  ),
 });
 
 export const ingredients = createTable("ingredients", {
@@ -31,9 +28,6 @@ export const ingredients = createTable("ingredients", {
   createdAt: timestamp("created_at", { withTimezone: true })
     .default(sql`CURRENT_TIMESTAMP`)
     .notNull(),
-  updatedAt: timestamp("updated_at", { withTimezone: true }).$onUpdate(
-    () => new Date(),
-  ),
 });
 
 export const categories = createTable("categories", {
@@ -42,9 +36,6 @@ export const categories = createTable("categories", {
   createdAt: timestamp("created_at", { withTimezone: true })
     .default(sql`CURRENT_TIMESTAMP`)
     .notNull(),
-  updatedAt: timestamp("updated_at", { withTimezone: true }).$onUpdate(
-    () => new Date(),
-  ),
 });
 
 export const mealRelations = relations(meals, ({ many }) => ({
