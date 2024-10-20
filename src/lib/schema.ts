@@ -32,16 +32,6 @@ export const ingredientWithCategorySchema = z.object({
       }
       return parsed;
     }),
-  updatedAt: z
-    .string()
-    // .min(1, "Updated at cannot be empty")
-    .transform((val) => {
-      const parsed = new Date(val);
-      if (!parsed) {
-        return null;
-      }
-      return parsed;
-    }),
 });
 
 export const newIngredientSchema = z.object({
