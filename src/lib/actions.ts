@@ -3,13 +3,8 @@
 import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 
-import {
-  newMealSchema,
-  createMeal,
-  newIngredientSchema,
-  createIngredient,
-  deleteIngredient,
-} from "./repository";
+import { createMeal, createIngredient, deleteIngredient } from "./repository";
+import { newMealSchema, newIngredientSchema } from "./schema";
 
 // TODO: should auth be here? or userId bound to the action in the component?
 
